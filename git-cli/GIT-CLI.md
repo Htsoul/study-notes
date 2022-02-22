@@ -20,7 +20,7 @@ $ git branch -d -r <branchname> //删除远程分支，删除后还需推送到�
 $ git push origin:<branchname>  //删除后推送至服务器
 $ git branch -m <oldbranch> <newbranch> //重命名本地分支
 $ git push -u origin master //将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了
-$ git push origin //将当前分支推送到origin主机的对应分支
+$ git push origin <branchname> //将当前分支推送到origin主机的对应分支
 $ git branch --unset-upstream master //取消对master的跟踪
 ```
 

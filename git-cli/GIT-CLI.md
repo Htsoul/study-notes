@@ -20,7 +20,7 @@ $ git branch -d -r <branchname> //删除远程分支，删除后还需推送到�
 $ git push origin:<branchname>  //删除后推送至服务器
 $ git branch -m <oldbranch> <newbranch> //重命名本地分支
 $ git push -u origin master //将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了
-$ git push origin <branchname> //将当前分支推送到origin主机的对应分支
+$ git push origin //将当前分支推送到origin主机的对应分支
 $ git branch --unset-upstream master //取消对master的跟踪
 ```
 
@@ -44,4 +44,30 @@ git merge master
 git push -u origin dev
 ```
 
++ 设置全局环境
+
+```shell
+$ git config --global user.email "xxx.gamil.com"
+$ git config --global user.name "xxx"
+```
+
++ 不开启代理
+
+```shell
+$ git config --global --unset https.proxy
+```
+
++ 开启代理
+
+```shell
+$ git config --global https.proxy http://127.0.0.1:9090
+```
+
++ `git`生成`ssh`密钥
+
+```shell
+$ ssh-keygen -t rsa -C "xxx.gmail.com"  //rsa
+$ ssh-keygen -t ed25519 -C "xxx@gmail.com"  //ed25519
+$ cat ~/.ssh/id.xxx.pub
+```
 

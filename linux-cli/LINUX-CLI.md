@@ -149,5 +149,32 @@ $ vi /etc/ssh/sshd_config
 //默认端口是22
 ```
 
+### 发出网络请求获取数据
+
+```shell
+$ curl 192.163.234.133
+```
+
+### 查询端口进程
+
+```shell
+$ netstat -ant | grep 3000
+```
+
+### `systemctl`进程管理
+
+```shell
+#查看进程状态
+$ systemctl status sshd.service
+
+#重启服务
+$ systemctl restart docker
+
+$ systemctl start firewalld.service
+ 
+# 开机自启动
+$ systemctl enable redis
+```
+
 
 

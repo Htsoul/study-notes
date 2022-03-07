@@ -237,3 +237,66 @@ $ docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql
 $ docker ps
 ```
 
+### `docker`开启`redis`服务
+
++ 下载`redis`镜像
+
+```shell
+$ docker pull redis:6
+```
+
++ 下载`redis`配置文件并修改
+
+```shell
+$ wget http://download.redis.io/redis-stable/redis.conf
+
+$ vi /usr/redis/conf/redis.conf
+
+//修改一下内容
+bind 127.0.0.1 #注释掉这部分，这是限制redis只能本地访问
+
+protected-mode no #默认yes，开启保护模式，限制为本地访问
+
+daemonize no#默认no，改为yes意为以守护进程方式启动，可后台运行，除非kill进程，改为yes会使配置文件方式启动redis失败
+
+databases 16 #数据库个数（可选）
+
+dir ./ #输入本地redis数据库存放文件夹（可选）
+
+appendonly yes #redis持久化（可选）
+
+requirepass z123456 #登录密码
+```
+
++ 运行`redis`
+
+```shell
+$ docker run --name=myredis -d -p 6379:6379 -v /usr/redis/conf:/etc/redis/redis.conf -v /usr/redis/data:/data f1b6973564e9 redis-server /etc/redis/redis.conf --requirepass "z123456"
+```
+
+### `docker`开启`mongodb`服务
+
++ 下载`mongo`镜像
+
+```shell
+$ docker pull mongo
+```
+
++ 运行镜像并挂载数据卷
+
+```shell
+$ docker run -d --name=mymongo -p 27017:27017 -v /usr/local/mongo:/data/db  5285cb69ea55
+```
+
++ 从`mongo`容器中传输文件到宿主机
+
+```shell
+$ docker cp fd71dbe0e1ef:/etc/mongod.conf.orig /usr/local/mongo/conf/
+```
+
+### 开放了端口号但是远程还是不能访问
+
+```shell
+$ iptables -I INPUT -p tcp --dport 6379 -j ACCEPT
+```
+
